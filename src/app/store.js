@@ -1,8 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+
+const filterSlice = createSlice({
+  name: 'filter',
+  initialState: {
+    value: 0
+  },
+  reducers: {
+    filterSelected(state, action) {
+      state.value = action.payload
+    }
+  }
+})
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    filter: filterSlice.reducer
   },
 });
+
+export const { filterSelected } = filterSlice.actions
